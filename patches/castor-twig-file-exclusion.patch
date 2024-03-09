@@ -1,0 +1,67 @@
+From 900177bf49a297547b00a4497a065ea52f7751fd Mon Sep 17 00:00:00 2001
+From: Jacques Bodin-Hullin <j.bodinhullin@monsieurbiz.com>
+Date: Sat, 9 Mar 2024 19:16:46 +0100
+Subject: [PATCH] Add missing files and directories to phar
+
+---
+ tools/phar/box.darwin-amd64.json | 9 ++++++++-
+ tools/phar/box.darwin-arm64.json | 9 ++++++++-
+ tools/phar/box.linux-amd64.json  | 9 ++++++++-
+ 3 files changed, 24 insertions(+), 3 deletions(-)
+
+diff --git a/tools/phar/box.darwin-amd64.json b/tools/phar/box.darwin-amd64.json
+index 93268e6..9755983 100644
+--- a/tools/phar/box.darwin-amd64.json
++++ b/tools/phar/box.darwin-amd64.json
+@@ -19,5 +19,12 @@
+   "compression": "GZ",
+   "check-requirements": false,
+   "main": "bin/castor",
+-  "output": "tools/phar/build/castor.darwin-amd64.phar"
++  "output": "tools/phar/build/castor.darwin-amd64.phar",
++  "files": [
++    "../../../vendor/twig/twig/src/TwigTest.php"
++  ],
++  "directories-bin": [
++    "../../../PluginTemplate"
++  ],
++  "force-autodiscovery": true
+ }
+diff --git a/tools/phar/box.darwin-arm64.json b/tools/phar/box.darwin-arm64.json
+index 939285b..b202c9d 100644
+--- a/tools/phar/box.darwin-arm64.json
++++ b/tools/phar/box.darwin-arm64.json
+@@ -19,5 +19,12 @@
+   "compression": "GZ",
+   "check-requirements": false,
+   "main": "bin/castor",
+-  "output": "tools/phar/build/castor.darwin-arm64.phar"
++  "output": "tools/phar/build/castor.darwin-arm64.phar",
++  "files": [
++    "../../../vendor/twig/twig/src/TwigTest.php"
++  ],
++  "directories-bin": [
++    "../../../PluginTemplate"
++  ],
++  "force-autodiscovery": true
+ }
+diff --git a/tools/phar/box.linux-amd64.json b/tools/phar/box.linux-amd64.json
+index 74e33f8..bd8ca01 100644
+--- a/tools/phar/box.linux-amd64.json
++++ b/tools/phar/box.linux-amd64.json
+@@ -19,5 +19,12 @@
+   "compression": "GZ",
+   "check-requirements": false,
+   "main": "bin/castor",
+-  "output": "tools/phar/build/castor.linux-amd64.phar"
++  "output": "tools/phar/build/castor.linux-amd64.phar",
++  "files": [
++    "../../../vendor/twig/twig/src/TwigTest.php"
++  ],
++  "directories-bin": [
++    "../../../PluginTemplate"
++  ],
++  "force-autodiscovery": true
+ }
+--
+2.42.1

@@ -11,13 +11,13 @@
 
 <h1 align="center">Monsieur Biz' Plugin Maker for Sylius</h1>
 
-[![License](https://img.shields.io/github/license/monsieurbiz/SyliusPluginTemplate?public&nocache)](https://github.com/monsieurbiz/SyliusPluginTemplate/blob/master/LICENSE)
-[![Tests Status](https://github.com/monsieurbiz/SyliusPluginTemplate/actions/workflows/tests.yaml/badge.svg?branch=master&event=push)](https://github.com/monsieurbiz/SyliusPluginTemplate/actions?query=workflow%3ATests)
-[![Security Status](https://github.com/monsieurbiz/SyliusPluginTemplate/actions/workflows/security.yaml/badge.svg?branch=master&event=push)](https://github.com/monsieurbiz/SyliusPluginTemplate/actions?query=workflow%3ASecurity)
-
 ## How to use it
 
-WIP
+Simply download the binary or the phar using [the latest build](https://github.com/monsieurbiz/SyliusPluginMaker/actions/workflows/build.yaml).
+
+You need to go down to the artifacts section.
+
+Then install the binary of the phar in your machine, and run `plugin-maker create`!
 
 ## License
 

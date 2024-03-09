@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    {{ pluginNamespace }}\:
+        resource: '../../*'
+        exclude: '../../{Entity{% if hasMigrations %},Migrations{% endif %}}'
+
+    {{ pluginNamespace }}\Controller\:
+        resource: '../../Controller'
+        tags: [ 'controller.service_arguments' ]
+

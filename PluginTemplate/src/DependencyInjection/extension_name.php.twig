@@ -1,0 +1,100 @@
+<?php
+
+/*
+ * This file is part of {{ pluginAuthor }}'s {{ pluginName }} for Sylius.
+ * (c) {{ pluginAuthor }} <{{ pluginAuthorEmail }}>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace {{ pluginNamespace }}\DependencyInjection;
+
+{% if hasMigrations %}
+use Sylius\Bundle\CoreBundle\DependencyInjection\PrependDoctrineMigrationsTrait;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
+/**
+ * @SuppressWarnings(PHPMD.LongClassName)
+ */
+final class {{ extensionName }} extends Extension implements PrependExtensionInterface
+{
+    use PrependDoctrineMigrationsTrait;
+
+    /**
+     * @inheritdoc
+     */
+    public function load(array $config, ContainerBuilder $container): void
+    {
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('services.yaml');
+    }
+
+{% if isMonsieurBizPlugin %}
+    /**
+     * @inheritdoc
+     */
+    public function getAlias(): string
+    {
+        return '{{ extensionAlias }}';
+    }
+{% endif %}
+
+    public function prepend(ContainerBuilder $container): void
+    {
+        $this->prependDoctrineMigrations($container);
+    }
+
+    protected function getMigrationsNamespace(): string
+    {
+        return '{{ pluginNamespace }}\Migrations';
+    }
+
+    protected function getMigrationsDirectory(): string
+    {
+        return '@{{ pluginPascalCaseFullName }}/Migrations';
+    }
+
+    protected function getNamespacesOfMigrationsExecutedBefore(): array
+    {
+        return [
+            'Sylius\Bundle\CoreBundle\Migrations',
+        ];
+    }
+}
+{% else %}
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
+/**
+ * @SuppressWarnings(PHPMD.LongClassName)
+ */
+final class {{ extensionName }} extends Extension
+{
+    /**
+     * @inheritdoc
+     */
+    public function load(array $config, ContainerBuilder $container): void
+    {
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('services.yaml');
+    }
+
+{% if isMonsieurBizPlugin %}
+    /**
+     * @inheritdoc
+     */
+    public function getAlias(): string
+    {
+        return '{{ extensionAlias }}';
+    }
+{% endif %}
+}
+{% endif %}
