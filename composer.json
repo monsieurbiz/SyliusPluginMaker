@@ -1,19 +1,6 @@
 {
     "require": {
         "twig/twig": "^3.8",
-        "jolicode/castor": "^0.14.0",
-        "cweagans/composer-patches": "^1.7"
-    },
-    "config": {
-        "allow-plugins": {
-            "cweagans/composer-patches": true
-        }
-    },
-    "extra": {
-        "patches": {
-            "jolicode/castor": {
-                "Fix twig file exclusion": "./patches/castor-twig-file-exclusion.patch"
-            }
-        }
+        "jolicode/castor": "dev-main#4cb17df"
     }
 }
