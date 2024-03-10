@@ -26,7 +26,7 @@ runs:
             shell: bash
             run: |
                 ./vendor/bin/castor repack --app-name=plugin-maker --os=${{ inputs.repack_os }}
-                ./vendor/bin/castor compile --os=${{ inputs.compile_os }}  --binary-path=plugin-maker plugin-maker.${{ inputs.repack_os }}.phar
+                ./vendor/bin/castor compile --os=${{ inputs.compile_os }}  --binary-path=plugin-maker.${{ inputs.repack_os }} plugin-maker.${{ inputs.repack_os }}.phar
 
         -   name: Upload Phar
             uses: actions/upload-artifact@v2
@@ -37,5 +37,5 @@ runs:
         -   name: Upload Binary
             uses: actions/upload-artifact@v2
             with:
-                name: plugin-maker.${{ inputs.compile_os }}
-                path: plugin-maker
+                name: plugin-maker.${{ inputs.repack_os }}
+                path: plugin-maker.${{ inputs.repack_os }}
