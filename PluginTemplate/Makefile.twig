@@ -144,7 +144,11 @@ test.twig: ## Validate Twig templates
 ### MIGRATIONS
 ### ¯¯¯¯¯¯¯¯¯¯
 
-doctrine.migration.diff: ## Create a diff migration file for the plugin
+app.doctrine.migration.diff: ## Create a diff migration file for the Test Application
+	${CONSOLE} doctrine:migrations:diff --namespace="App\Migrations"
+.PHONY: app.doctrine.migration.diff
+
+doctrine.migration.diff: ## Create a diff migration file for the Plugin itself
 	${CONSOLE} doctrine:migrations:diff --namespace="${DOCTRINE_MIGRATIONS_NAMESPACE}"
 .PHONY: doctrine.migration.diff
 

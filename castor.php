@@ -21,26 +21,47 @@ function create(
     ?string $defaultPluginLiteralName = null
 ): void {
     $vars = (object) [
+        // Sylius Bazinga Plugin
         'pluginLiteralName' => $pluginLiteralName = io()->ask('What is the literal name of your plugin? (example Sylius Bazinga Plugin)', $defaultPluginLiteralName),
+        // SyliusBazingaPlugin
         'pluginPascalCaseName' => $pluginPascalCaseName = io()->ask('What is the Pascal case name of your plugin?', str_replace(' ', '', $pluginLiteralName)),
+        // MonsieurBizSyliusBazingaPlugin
         'pluginPascalCaseFullName' => $pluginPascalCaseFullName = io()->ask('What is the full Pascal case name of your plugin? (including namespace)', 'MonsieurBiz' . $pluginPascalCaseName),
+        // sylius-bazinga-plugin
         'pluginKebabCaseName' => $pluginKebabCaseName = capture('echo ' . $pluginPascalCaseName . ' | sed -r "s/([A-Z])/-\\1/g" | tr "[:upper:]" "[:lower:]" | sed -r "s/^-//"'),
+        // sylius_bazinga_plugin
         'pluginSnakeCaseName' => $pluginSnakeCaseName = capture('echo ' . $pluginPascalCaseName . ' | sed -r "s/([A-Z])/_\\1/g" | tr "[:upper:]" "[:lower:]" | sed -r "s/^_//"'),
+        // Sylius Bazinga Plugin's description
         'pluginShortDescription' => io()->ask('What is the short description of your plugin?'),
+        // Monsieur Biz
         'pluginAuthor' => io()->ask('Who is the author of your plugin?', 'Monsieur Biz'),
+        // sylius@monsieurbiz.com
         'pluginAuthorEmail' => io()->ask('What is the email of the author of your plugin?', 'sylius@monsieurbiz.com'),
+        // MonsieurBiz\SyliusBazingaPlugin
         'pluginNamespace' => $pluginNamespace = io()->ask('What is the namespace of your plugin?', 'MonsieurBiz\\' . $pluginPascalCaseName),
+        // MonsieurBiz\\SyliusBazingaPlugin\\
         'pluginPsrNamespace' => str_replace('\\', '\\\\', $pluginNamespace . '\\'),
+        // MIT
         'pluginLicense' => io()->ask('What is the license of your plugin?', 'MIT'),
+        // monsieurbiz/SyliusBazingaPlugin
         'pluginGithub' => io()->ask('What is the github repository of your plugin?', 'monsieurbiz/' . $pluginPascalCaseName),
+        // monsieurbiz/sylius-bazinga-plugin
         'pluginComposerIdentifier' => io()->ask('What is the composer identifier of your plugin?', 'monsieurbiz/' . $pluginKebabCaseName),
+        // monsieurbiz_sylius_bazinga_plugin
         'configFilesFilename' => io()->ask('What is the filename of your config files?', 'monsieurbiz_' . $pluginSnakeCaseName),
+        // true|false
         'useMonsieurBizRecipes' => io()->confirm('Do you want to use Monsieur Biz\' recipes?', true),
+        // true|false
         'isMonsieurBizPlugin' => io()->confirm('Is this a Monsieur Biz plugin?', true),
+        // 1.12
         'defaultSyliusVersion' => io()->ask('What is the default Sylius version of your plugin?', '1.12'),
+        // 8.2
         'defaultPhpVersion' => io()->ask('What is the default PHP version of your plugin?', '8.2'),
+        // MonsieurBizSyliusBazingaExtension
         'extensionName' => str_replace('Plugin', 'Extension', $pluginPascalCaseFullName),
+        // monsieurbiz_bazinga
         'extensionAlias' => io()->ask('What is the alias of your extension?', 'monsieurbiz_' . strtr($pluginSnakeCaseName, ['_plugin' => '', 'sylius_' => ''])),
+        // true|false
         'hasMigrations' => io()->confirm('Does your plugin have (or will have) migrations?', false),
     ];
 
