@@ -55,6 +55,8 @@ function create(
         'isMonsieurBizPlugin' => io()->confirm('Is this a Monsieur Biz plugin?', true),
         // 1.12
         'defaultSyliusVersion' => io()->ask('What is the default Sylius version of your plugin?', '1.12'),
+        // 1.13
+        'limitSyliusVersion' => io()->ask('What is the limit Sylius version of your plugin?', '1.13'),
         // 8.2
         'defaultPhpVersion' => io()->ask('What is the default PHP version of your plugin?', '8.2'),
         // MonsieurBizSyliusBazingaExtension
