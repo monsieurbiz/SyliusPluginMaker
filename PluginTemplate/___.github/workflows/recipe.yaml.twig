@@ -76,7 +76,6 @@ jobs:
 {% if useMonsieurBizRecipes %}
                   composer config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]'
 {% endif %}
-                  composer config repositories.plugin '{"type": "path", "url": "../plugin/"}'
 
             - name: Require plugin & install all dependencies
               working-directory: ./sylius
