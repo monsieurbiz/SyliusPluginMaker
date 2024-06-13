@@ -1,6 +1,6 @@
 {
     "require": {
         "twig/twig": "^3.8",
-        "jolicode/castor": "dev-main#4cb17df"
+        "jolicode/castor": "^0.17.0"
     }
 }
