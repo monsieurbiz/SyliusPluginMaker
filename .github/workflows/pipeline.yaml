@@ -16,6 +16,9 @@ jobs:
         runs-on: macos-latest
         steps:
             -   uses: actions/checkout@v4
+            -   uses: ./.github/actions/install
+                with:
+                    php: ${{ env.PHP_VERSION }}
             -   name: Castor cache
                 uses: actions/cache@v4
                 id: cache-castor-macos
@@ -37,13 +40,15 @@ jobs:
                 with:
                     repack_os: darwin
                     compile_os: macos
-                    php: ${{ env.PHP_VERSION }}
 
     build-linux:
         name: Build Linux
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v4
+            -   uses: ./.github/actions/install
+                with:
+                    php: ${{ env.PHP_VERSION }}
             -   name: Castor cache
                 uses: actions/cache@v4
                 id: cache-castor-linux
@@ -65,7 +70,6 @@ jobs:
                 with:
                     repack_os: linux
                     compile_os: linux
-                    php: ${{ env.PHP_VERSION }}
 
     create-plugin:
         name: Create plugin and install it

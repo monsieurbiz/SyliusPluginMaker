@@ -7,21 +7,9 @@ inputs:
     compile_os:
         description: 'The OS to compile the binary for'
         required: true
-    php:
-        description: 'The PHP version to use'
-        required: true
 runs:
     using: 'composite'
     steps:
-        -   name: Setup PHP
-            uses: shivammathur/setup-php@v2
-            with:
-                php-version: ${{ inputs.php }}
-                tools: box
-
-        -   run: composer install --prefer-dist
-            shell: bash
-
         -   name: Build
             shell: bash
             run: |
