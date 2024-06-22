@@ -42,7 +42,7 @@ function create(
         // MonsieurBiz\\SyliusBazingaPlugin\\
         'pluginPsrNamespace' => str_replace('\\', '\\\\', $pluginNamespace . '\\'),
         // MIT
-        'pluginLicense' => io()->ask('What is the license of your plugin?', 'MIT'),
+        'pluginLicense' => io()->ask('What is the license of your plugin? You can also use Proprietary license.', 'MIT'),
         // monsieurbiz/SyliusBazingaPlugin
         'pluginGithub' => io()->ask('What is the github repository of your plugin?', 'monsieurbiz/' . $pluginPascalCaseName),
         // monsieurbiz/sylius-bazinga-plugin
@@ -122,15 +122,20 @@ function createPluginsFromVars(object $vars): void
     }
 
     // Last but not least, create the license
-    $license = request('GET', 'https://raw.githubusercontent.com/github/choosealicense.com/gh-pages/_licenses/' . strtolower($vars->pluginLicense) . '.txt')->getContent();
-    $licenseContent = trim(explode('---', $license)[2]);
-    $licenseContent = strtr(
-        $licenseContent,
-        [
-            '[year]' => date('Y'),
-            '[fullname]' => $vars->pluginAuthor,
-        ]
-    );
+    $licenceName = strtolower($vars->pluginLicense);
+    if ($licenceName === 'proprietary') {
+        $licenseContent = 'All rights reserved. This plugin is proprietary.';
+    } else {
+        $license = request('GET', 'https://raw.githubusercontent.com/github/choosealicense.com/gh-pages/_licenses/' . $licenceName . '.txt')->getContent();
+        $licenseContent = trim(explode('---', $license)[2]);
+        $licenseContent = strtr(
+            $licenseContent,
+            [
+                '[year]' => date('Y'),
+                '[fullname]' => $vars->pluginAuthor,
+            ]
+        );
+    }
     fs()->appendToFile($vars->pluginPascalCaseName . '/LICENSE', $licenseContent);
     io()->progressAdvance();
 
