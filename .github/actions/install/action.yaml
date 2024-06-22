@@ -1,0 +1,17 @@
+name: 'Install dependencies'
+description: 'Install dependencies for the project and the phar builder'
+inputs:
+    php:
+        description: 'The PHP version to use'
+        required: true
+runs:
+    using: 'composite'
+    steps:
+        -   name: Setup PHP
+            uses: shivammathur/setup-php@v2
+            with:
+                php-version: ${{ inputs.php }}
+                tools: box, castor
+
+        -   run: composer install --prefer-dist
+            shell: bash
