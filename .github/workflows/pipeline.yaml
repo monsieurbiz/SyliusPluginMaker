@@ -36,6 +36,8 @@ jobs:
                     path: ${{ steps.composer-cache.outputs.dir }}
                     key: composer2-php-macos:${{ env.PHP_VERSION }}-${{ github.sha }}
                     restore-keys: composer2-php-macos:${{ env.PHP_VERSION }}-
+            -   run: composer install --prefer-dist
+                shell: bash
             -   uses: ./.github/actions/build
                 with:
                     repack_os: darwin
@@ -66,6 +68,8 @@ jobs:
                     path: ${{ steps.composer-cache.outputs.dir }}
                     key: composer2-php-linux:${{ env.PHP_VERSION }}-${{ github.sha }}
                     restore-keys: composer2-php-linux:${{ env.PHP_VERSION }}-
+            -   run: composer install --prefer-dist
+                shell: bash
             -   uses: ./.github/actions/build
                 with:
                     repack_os: linux
@@ -87,12 +91,12 @@ jobs:
             -   name: Download binary
                 uses: actions/download-artifact@v4
                 with:
-                    name: plugin-maker.linux
+                    name: plugin-maker.linux.phar
                     path: ./bin
-            -   run: chmod +x bin/plugin-maker.linux
+            -   run: chmod +x bin/plugin-maker.linux.phar
                 shell: bash
             -   name: Create a plugin
-                run: ./bin/plugin-maker.linux create --no-interaction "Sylius Bazinga Plugin"
+                run: ./bin/plugin-maker.linux.phar create --no-interaction "Sylius Bazinga Plugin"
                 shell: bash
             -   name: Install the plugin
                 working-directory: ./SyliusBazingaPlugin
@@ -114,7 +118,5 @@ jobs:
                 uses: softprops/action-gh-release@v1
                 with:
                     files: |
-                        ./artifacts/plugin-maker.linux/plugin-maker.linux
                         ./artifacts/plugin-maker.linux.phar/plugin-maker.linux.phar
-                        ./artifacts/plugin-maker.darwin/plugin-maker.darwin
                         ./artifacts/plugin-maker.darwin.phar/plugin-maker.darwin.phar
