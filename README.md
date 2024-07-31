@@ -46,6 +46,9 @@ You have a Sylius installed with your plugin, you can start coding your plugin. 
 
 ![Sylius in setup !](assets/sylius.jpg)
 
+For you recipe, create a folder for your plugin with the `0.1` version in the [MonsieurBiz Symfony Recipe repo](https://github.com/monsieurbiz/symfony-recipes/).
+Example : `monsieurbiz/sylius-amazing-plugin/0.1/`.
+
 ## License
 
 Under MIT.  
